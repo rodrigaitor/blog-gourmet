@@ -1,3 +1,4 @@
+/* ===== RESET Y BASE ===== */
 * {
     margin: 0;
     padding: 0;
@@ -9,19 +10,22 @@ body {
     background-color: #fef9f0;
     color: #2c2c2c;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 16px;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (arreglado para móvil) ===== */
 header {
     background: #1a1a1a;
     color: white;
-    padding: 20px 0;
+    padding: 15px 0;
+    width: 100%;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -34,62 +38,114 @@ header .container {
     flex-wrap: wrap;
 }
 
+.logo {
+    text-align: left;
+}
+
 .logo h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
 }
 
 .logo p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #d4a373;
+}
+
+/* Navegación - versión móvil primero */
+nav {
+    width: auto;
 }
 
 nav ul {
     display: flex;
-    gap: 30px;
     list-style: none;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
-nav a {
+nav ul li a {
     color: white;
     text-decoration: none;
+    font-size: 0.8rem;
     font-weight: 500;
+    padding: 5px 0;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
-nav a:hover {
+nav ul li a:hover {
     color: #d4a373;
 }
 
-/* ===== HERO ===== */
+/* ===== RESPONSIVE HEADER (pantallas pequeñas) ===== */
+@media (max-width: 600px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .logo {
+        text-align: center;
+    }
+    
+    nav ul {
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    nav ul li a {
+        font-size: 0.75rem;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 450px) {
+    nav ul {
+        gap: 8px;
+    }
+    
+    nav ul li a {
+        font-size: 0.7rem;
+    }
+}
+
+/* ===== HERO (imagen que NO se corta) ===== */
 .hero {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
     background-size: cover;
     background-position: center;
-    height: 500px;
+    background-repeat: no-repeat;
+    min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
+    padding: 40px 20px;
 }
 
 .hero-content h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: 1.8rem;
     margin-bottom: 15px;
 }
 
 .hero-content p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 25px;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn {
     background-color: #d4a373;
     color: #1a1a1a;
-    padding: 12px 30px;
+    padding: 10px 25px;
     text-decoration: none;
     font-weight: bold;
     border-radius: 30px;
@@ -102,10 +158,24 @@ nav a:hover {
     color: white;
 }
 
-/* ===== DESTACADO ===== */
+@media (min-width: 768px) {
+    .hero {
+        min-height: 500px;
+    }
+    
+    .hero-content h2 {
+        font-size: 3rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+}
+
+/* ===== SECCIÓN DESTACADA ===== */
 .destacado {
     background: #e9edc9;
-    padding: 60px 20px;
+    padding: 50px 20px;
     text-align: center;
 }
 
@@ -114,14 +184,22 @@ nav a:hover {
     color: #d4a373;
     padding: 5px 15px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
+    display: inline-block;
 }
 
 .destacado h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin: 15px 0;
+}
+
+.destacado p {
+    font-size: 0.95rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn-secundario {
@@ -131,32 +209,52 @@ nav a:hover {
     text-decoration: none;
     font-weight: bold;
     border-bottom: 2px solid #d4a373;
+    padding-bottom: 3px;
+}
+
+@media (min-width: 768px) {
+    .destacado h2 {
+        font-size: 2.5rem;
+    }
 }
 
 /* ===== GRID DE RECETAS ===== */
 .recetas {
-    padding: 60px 0;
+    padding: 50px 0;
 }
 
 .section-title {
     text-align: center;
     font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    margin-bottom: 40px;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 0 16px;
+}
+
+@media (min-width: 640px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .tarjeta {
     background: white;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
 }
 
 .tarjeta:hover {
@@ -165,46 +263,61 @@ nav a:hover {
 
 .tarjeta img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
 }
 
 .tarjeta h3 {
     font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
     padding: 15px 15px 5px;
 }
 
 .tarjeta p {
     padding: 0 15px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666;
 }
 
-.tarjeta .btn-receta {
+.btn-receta {
     display: block;
     margin: 15px;
     text-align: center;
     background: #f4f1e1;
-    padding: 8px;
+    padding: 10px;
     text-decoration: none;
     color: #1a1a1a;
     border-radius: 25px;
     font-weight: bold;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.btn-receta:hover {
+    background: #e9edc9;
 }
 
 /* ===== SIDEBAR ===== */
 .sidebar-section {
     background: #f4f1e1;
-    padding: 40px 0;
+    padding: 50px 0;
 }
 
 .sidebar-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 0 16px;
 }
 
-.categorias ul, .newsletter ul {
+@media (min-width: 768px) {
+    .sidebar-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+.categorias ul {
     list-style: none;
     margin-top: 15px;
 }
@@ -229,6 +342,7 @@ nav a:hover {
     margin: 15px 0;
     border: 1px solid #ddd;
     border-radius: 25px;
+    font-size: 0.9rem;
 }
 
 .newsletter button {
@@ -238,6 +352,14 @@ nav a:hover {
     border: none;
     border-radius: 25px;
     cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+@media (min-width: 480px) {
+    .newsletter button {
+        width: auto;
+    }
 }
 
 .mensaje {
@@ -245,34 +367,9 @@ nav a:hover {
     font-size: 0.8rem;
 }
 
-/* ===== FOOTER ===== */
-footer {
-    background: #1a1a1a;
-    color: white;
-    text-align: center;
-    padding: 30px 0;
-    margin-top: 20px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-    
-    .sidebar-container {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* ===== PÁGINA DE RECETA INDIVIDUAL ===== */
 .receta-container {
-    padding: 60px 0;
+    padding: 40px 0;
     background: #fef9f0;
 }
 
@@ -280,17 +377,24 @@ footer {
     max-width: 800px;
     margin: 0 auto;
     background: white;
-    padding: 40px;
+    padding: 25px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+@media (min-width: 768px) {
+    .receta-wrapper {
+        padding: 40px;
+    }
 }
 
 .btn-volver {
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: #d4a373;
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .btn-volver:hover {
@@ -299,42 +403,57 @@ footer {
 
 .receta-titulo {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-bottom: 20px;
     color: #1a1a1a;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .receta-titulo {
+        font-size: 2.5rem;
+        text-align: left;
+    }
 }
 
 .receta-imagen {
     width: 100%;
     border-radius: 15px;
     margin-bottom: 25px;
+    height: auto;
+    max-height: 350px;
+    object-fit: cover;
 }
 
 .receta-meta {
     display: flex;
-    gap: 30px;
-    margin-bottom: 40px;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee;
 }
 
-.meta-item {
-    background: #f4f1e1;
-    padding: 8px 15px;
-    border-radius: 25px;
-    font-size: 0.9rem;
+@media (min-width: 600px) {
+    .receta-meta {
+        flex-direction: row;
+        gap: 20px;
+    }
 }
 
-.receta-ingredientes,
-.receta-preparacion {
-    margin-bottom: 40px;
+.meta-item {
+    background: #f4f1e1;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-align: center;
 }
 
 .receta-ingredientes h2,
 .receta-preparacion h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
+    margin: 25px 0 15px;
     color: #1a1a1a;
 }
 
@@ -353,15 +472,15 @@ footer {
 }
 
 .receta-preparacion li {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     line-height: 1.6;
 }
 
 .receta-consejo {
     background: #f4f1e1;
-    padding: 20px 25px;
+    padding: 18px;
     border-radius: 15px;
-    margin-top: 30px;
+    margin: 30px 0 20px;
 }
 
 .receta-consejo h3 {
@@ -369,84 +488,98 @@ footer {
     color: #1a1a1a;
 }
 
-@media (max-width: 768px) {
-    .receta-wrapper {
-        padding: 20px;
-    }
-    
-    .receta-titulo {
-        font-size: 1.8rem;
-    }
-    
-    .receta-meta {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
 /* ===== PÁGINAS SECUNDARIAS ===== */
 .page-header {
     background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
     color: white;
     text-align: center;
-    padding: 60px 20px;
+    padding: 40px 20px;
 }
 
 .page-header h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
 .page-header p {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+    .page-header {
+        padding: 60px 20px;
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
 }
 
 /* ===== TIPS ===== */
 .tips-container {
-    padding: 60px 0;
+    padding: 50px 0;
     background: #fef9f0;
 }
 
 .tip-card {
     background: white;
     border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 25px;
+    padding: 20px;
+    margin: 0 16px 20px 16px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    border-left: 5px solid #d4a373;
-    transition: transform 0.2s;
-}
-
-.tip-card:hover {
-    transform: translateX(5px);
+    border-left: 4px solid #d4a373;
 }
 
 .tip-card h3 {
     font-family: 'Playfair Display', serif;
-    color: #1a1a1a;
+    font-size: 1.1rem;
     margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.tip-card p {
+    font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+    .tip-card {
+        margin: 0 auto 25px auto;
+        max-width: 800px;
+    }
 }
 
 /* ===== CONTACTO ===== */
 .contacto-container {
-    padding: 60px 0;
+    padding: 40px 0;
     background: #fef9f0;
 }
 
 .contacto-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    grid-template-columns: 1fr;
+    gap: 35px;
     background: white;
-    padding: 40px;
+    padding: 25px;
     border-radius: 20px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    margin: 0 16px;
+}
+
+@media (min-width: 768px) {
+    .contacto-wrapper {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        padding: 40px;
+        margin: 0 auto;
+        max-width: 1000px;
+    }
 }
 
 .contacto-info p {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
 }
 
 .contacto-info h3, .contacto-form h3 {
@@ -456,29 +589,31 @@ footer {
 }
 
 .redes-sociales {
-    margin-top: 30px;
-    padding-top: 20px;
+    margin-top: 25px;
+    padding-top: 15px;
     border-top: 1px solid #eee;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
 }
 
 .form-group input:focus,
@@ -491,12 +626,19 @@ footer {
 .btn-enviar {
     background: #1a1a1a;
     color: white;
-    padding: 12px 25px;
+    padding: 12px 20px;
     border: none;
     border-radius: 30px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
+    width: 100%;
+}
+
+@media (min-width: 480px) {
+    .btn-enviar {
+        width: auto;
+    }
 }
 
 .btn-enviar:hover {
@@ -505,150 +647,19 @@ footer {
 
 .mensaje-confirmacion {
     margin-top: 15px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
-@media (max-width: 768px) {
-    .contacto-wrapper {
-        grid-template-columns: 1fr;
-        padding: 20px;
-    }
-    
-    .page-header h1 {
-        font-size: 1.8rem;
-    }
-}
-/* ===== PÁGINAS SECUNDARIAS ===== */
-.page-header {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.page-header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.page-header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
-
-/* ===== TIPS ===== */
-.tips-container {
-    padding: 60px 0;
-    background: #fef9f0;
-}
-
-.tip-card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    border-left: 5px solid #d4a373;
-    transition: transform 0.2s;
-}
-
-.tip-card:hover {
-    transform: translateX(5px);
-}
-
-.tip-card h3 {
-    font-family: 'Playfair Display', serif;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-}
-
-/* ===== CONTACTO ===== */
-.contacto-container {
-    padding: 60px 0;
-    background: #fef9f0;
-}
-
-.contacto-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-
-.contacto-info p {
-    margin-bottom: 15px;
-}
-
-.contacto-info h3, .contacto-form h3 {
-    font-family: 'Playfair Display', serif;
-    margin-bottom: 20px;
-    color: #1a1a1a;
-}
-
-.redes-sociales {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-family: 'Poppins', sans-serif;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #d4a373;
-}
-
-.btn-enviar {
+/* ===== FOOTER ===== */
+footer {
     background: #1a1a1a;
     color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
+    text-align: center;
+    padding: 25px 16px;
+    margin-top: 20px;
 }
 
-.btn-enviar:hover {
-    background: #d4a373;
-}
-
-.mensaje-confirmacion {
-    margin-top: 15px;
-    font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-    .contacto-wrapper {
-        grid-template-columns: 1fr;
-        padding: 20px;
-    }
-    
-    .page-header h1 {
-        font-size: 1.8rem;
-    }
+footer p {
+    font-size: 0.75rem;
+    margin-bottom: 5px;
 }
